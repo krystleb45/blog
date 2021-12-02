@@ -1,0 +1,19 @@
+body{
+    font-family: 'Fuzzy Bubbles', cursive;
+    background-color: plum;
+}
+
+h1 {
+    color: red;
+    font-weight: 400;
+}
+
+.blog-1{
+    background-color: purple;
+}
+.blog-2{
+    background-color: red;
+}
+.blog-3{
+    background-color: blue;
+}
