@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-i7#fekoo=6=*4v7cq49-8765sf61l8uk00pm30pnh18*uv*t6)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".herokuapp.com", "127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -36,13 +36,16 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
+    "accounts",
     "blog",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "whitenosie.middleware.WhiteNoiseMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -121,10 +124,13 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = str(BASE_DIR.joinpath("staticfiles"))
 STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_REDIRECT_URL = "blog_list"
+# LOGOUT_REDIRECT_URL = "home"

@@ -27,7 +27,7 @@ class BlogTests(TestCase):
         self.assertEqual(f"{self.post.author}", "test")
         self.assertEqual(f"{self.post.body}", "A body")
 
-    def tst_post_list_view(self):
+    def test_post_list_view(self):
         response = self.client.get(reverse("blog_list"))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "A body")
@@ -44,7 +44,7 @@ class BlogTests(TestCase):
     def test_post_create_view(self):
         response = self.client.post(
             reverse("blog_new"),
-            {"title=": "new title", "body": "new body", "author": self.user.id},
+            {"title": "new title", "body": "new body", "author": self.user.id},
         )
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Post.objects.last().title, "new title")
@@ -54,7 +54,7 @@ class BlogTests(TestCase):
         response = self.client.post(
             reverse("blog_edit", args=[1]),
             {
-                "title=": "Updated title",
+                "title": "Updated title",
                 "body": "Updated body",
             },
         )
